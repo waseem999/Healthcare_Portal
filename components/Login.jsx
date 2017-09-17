@@ -7,7 +7,7 @@ const Login = (props) => (
     <h2>Healthcare Portal</h2>
     <form className="login-box column" onSubmit={props.handleLogin}>
       <input className="inputField" placeholder="User Name"/>
-      <input className="inputField" placeholder="Password"/>
+      <input type="password" className="inputField" placeholder="Password"/>
       <button type="submit" className="login-button">LOGIN</button>
     </form>
   </div>

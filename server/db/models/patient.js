@@ -3,7 +3,7 @@ var db = new Sequelize('postgres://localhost:5432/healthcare_records', {
 });
 const bcrypt = require('bcrypt-nodejs');
 
-module.exports = db.define('Patient', {
+module.exports = db.define('patient', {
   address: {
     type: Sequelize.STRING,
     allowNull: false,

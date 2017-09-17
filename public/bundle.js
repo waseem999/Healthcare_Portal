@@ -66,7 +66,7 @@
 	
 	var _LoginContainer2 = _interopRequireDefault(_LoginContainer);
 	
-	var _ComponentTwo = __webpack_require__(301);
+	var _ComponentTwo = __webpack_require__(302);
 	
 	var _ComponentTwo2 = _interopRequireDefault(_ComponentTwo);
 	
@@ -28218,7 +28218,7 @@
 	
 	var _Navbar2 = _interopRequireDefault(_Navbar);
 	
-	var _Login = __webpack_require__(302);
+	var _Login = __webpack_require__(301);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
@@ -30821,7 +30821,7 @@
 /* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -30835,9 +30835,12 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	var LOAD_USER = 'LOAD_USER';
+	var USER_ERROR = 'USER_ERROR';
+	
 	var loadUser = exports.loadUser = function loadUser(user, role) {
 	  return {
-	    type: LOAD_USER, user: user, role: role
+	    type: LOAD_USER, user: user
 	  };
 	};
 	
@@ -30850,9 +30853,9 @@
 	
 	function signIn(username, password) {
 	  return function (dispatch) {
-	    return _axios2.default.get("/api/payments").then(function (response) {
+	    return _axios2.default.get("/api/users").then(function (response) {
 	      if (response.result) {
-	        dispatch(loadUser(response.result.user, resonse.result.role));
+	        dispatch(loadUser(response.result.user));
 	      } else if (response.error) {
 	        dispatch(setUserError(response.error));
 	      }
@@ -30862,36 +30865,6 @@
 
 /***/ }),
 /* 301 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var Portfolio = function Portfolio() {
-	    return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	            'h1',
-	            null,
-	            'Component Two'
-	        )
-	    );
-	};
-	
-	exports.default = Portfolio;
-
-/***/ }),
-/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -30919,7 +30892,7 @@
 	      "form",
 	      { className: "login-box column", onSubmit: props.handleLogin },
 	      _react2.default.createElement("input", { className: "inputField", placeholder: "User Name" }),
-	      _react2.default.createElement("input", { className: "inputField", placeholder: "Password" }),
+	      _react2.default.createElement("input", { type: "password", className: "inputField", placeholder: "Password" }),
 	      _react2.default.createElement(
 	        "button",
 	        { type: "submit", className: "login-button" },
@@ -30930,6 +30903,36 @@
 	};
 	
 	exports.default = Login;
+
+/***/ }),
+/* 302 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Portfolio = function Portfolio() {
+	    return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	            'h1',
+	            null,
+	            'Component Two'
+	        )
+	    );
+	};
+	
+	exports.default = Portfolio;
 
 /***/ })
 /******/ ]);

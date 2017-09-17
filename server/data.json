@@ -1,0 +1,9 @@
+[ {
+  "model": "users",
+  "data": {
+      "username": "Jon Snow",
+      "password": "winter",
+      "role": "patient"
+    }
+  }
+]

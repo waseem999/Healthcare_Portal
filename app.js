@@ -1,7 +1,10 @@
 const express = require('express');
 const path = require('path');
 const models = require('./server/db/models'); 
-const Patients = models.Patient;
+const sequelize_fixtures = require('sequelize-fixtures');
+const patients = models.patient;
+const users = models.users;
+const bcrypt = require('bcrypt-nodejs');
 
 const bodyParser = require('body-parser');
 
@@ -22,7 +25,9 @@ app.use(function (err, req, res, next) {
     res.status(err.status || 500).send(err);
 });
 
-Patients.sync({force: true});
+users.sync({})
+.then(()=> patients.sync({}))
+.then(sequelize_fixtures.loadFile('server/data.json', models));
 
   app.listen(3001, function () {
     console.log('Server is listening on port 3001');

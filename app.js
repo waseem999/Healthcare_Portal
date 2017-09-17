@@ -5,6 +5,7 @@ const sequelize_fixtures = require('sequelize-fixtures');
 const patients = models.patient;
 const users = models.users;
 const bcrypt = require('bcrypt-nodejs');
+const index = require('./server/router/index.js');
 
 const bodyParser = require('body-parser');
 
@@ -14,6 +15,10 @@ const app = express();
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.set('view engine', 'html');
+
+app.use('/api', index);
 
 //Here is where I serve up the first page
 app.get('/', function (req, res, next) {

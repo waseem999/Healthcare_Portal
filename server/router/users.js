@@ -6,9 +6,10 @@ const bodyParser = require('body-parser');
 
 router.post('/', (req, res, next) => {
 let currentuser;
+let name = req.body.username
    User.findOne({
        where : {
-           username: req.body.user
+           username: name
        }
    })
    .then(user => {
@@ -17,15 +18,19 @@ let currentuser;
             var error = new Error("No Username Found");
             throw error;
         }
-            else {
-              return user.checkPassword(req.body.password)
-            }
+        else {
+          res.json(user)
+        }
+            // else {
+            //   console.log("req body password?", req.body.password)
+            //   return user.checkPassword(req.body.password)
+            // }
    })
-   .then(() => {
-        req.session.userId = currentuser.id;
-        req.session.name = currentuser.username;
-        res.json(currentuser);
-    })
+  //  .then(() => {
+  //       req.session.userId = currentuser.id;
+  //       req.session.name = currentuser.username;
+  //       res.json(currentuser);
+  //   })
     .catch(next);
 })
 

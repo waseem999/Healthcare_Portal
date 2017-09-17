@@ -4,7 +4,7 @@ const USER_ERROR = 'USER_ERROR';
 
 
 
-export const loadUser = (user, role) => {
+export const loadUser = (user) => {
 return {
     type: LOAD_USER, user
     }
@@ -17,12 +17,17 @@ export const setUserError = (error) => {
   };
 }
 
-export function signIn(username, password) {
-      return dispatch =>  {
-      return axios.get("/api/users")
+export function signIn(state) {
+  let password = state.password;
+  let username = state.username;
+
+    return dispatch =>  {
+      return axios.post("/api/users", {
+          username, password
+        })
       .then(response => {
-            if(response.result) {
-          dispatch(loadUser(response.result.user))
+            if(response.data) {
+          dispatch(loadUser(response.data))
       
         } else if (response.error){
           dispatch(setUserError(response.error));

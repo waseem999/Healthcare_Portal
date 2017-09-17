@@ -28193,7 +28193,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -28233,67 +28233,75 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var LoginContainer = function (_Component) {
-	    _inherits(LoginContainer, _Component);
+	  _inherits(LoginContainer, _Component);
 	
-	    function LoginContainer(props) {
-	        _classCallCheck(this, LoginContainer);
+	  function LoginContainer(props) {
+	    _classCallCheck(this, LoginContainer);
 	
-	        var _this = _possibleConstructorReturn(this, (LoginContainer.__proto__ || Object.getPrototypeOf(LoginContainer)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (LoginContainer.__proto__ || Object.getPrototypeOf(LoginContainer)).call(this, props));
 	
-	        _this.state = {
-	            username: '',
-	            password: ''
-	        };
-	        _this.handleChange = _this.handleChange.bind(_this);
-	        _this.handleLogin = _this.handleLogin.bind(_this);
-	        return _this;
+	    _this.state = {
+	      username: '',
+	      password: ''
+	    };
+	    _this.handleChange = _this.handleChange.bind(_this);
+	    _this.handleLogin = _this.handleLogin.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(LoginContainer, [{
+	    key: 'handleChange',
+	    value: function handleChange(e) {
+	      this.setState(_defineProperty({}, e.target.id, e.target.value));
 	    }
+	  }, {
+	    key: 'redirectTo',
+	    value: function redirectTo() {
+	      if (this.props.user) {
+	        console.log("user", this.props);
+	        window.location.href = "#pendingapproval";
+	      } else {
+	        null;
+	      }
+	    }
+	  }, {
+	    key: 'handleLogin',
+	    value: function handleLogin(e) {
+	      e.preventDefault();
+	      this.props.signIn(this.state);
+	      this.redirectTo();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var username = this.state.username;
+	      var password = this.state.password;
 	
-	    _createClass(LoginContainer, [{
-	        key: 'handleChange',
-	        value: function handleChange(e) {
-	            this.setState(_defineProperty({}, e.target.id, e.target.value));
-	        }
-	    }, {
-	        key: 'handleLogin',
-	        value: function handleLogin(e) {
-	            e.preventDefault();
-	            this.props.loadUser({
-	                email: this.state.username,
-	                password: this.state.password
-	            });
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var username = this.state.username;
-	            var password = this.state.password;
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_Navbar2.default, null),
+	        _react2.default.createElement(_Login2.default, { handleChange: this.handleChange, handleLogin: this.handleLogin })
+	      );
+	    }
+	  }]);
 	
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(_Navbar2.default, null),
-	                _react2.default.createElement(_Login2.default, { handleChange: this.handleChange, handleLogin: this.handleLogin })
-	            );
-	        }
-	    }]);
-	
-	    return LoginContainer;
+	  return LoginContainer;
 	}(_react.Component);
 	
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
-	    var user = state.user || {};
-	    return {
-	        user: user
-	    };
+	  var user = state.user || {};
+	  return {
+	    user: user
+	  };
 	};
 	
 	var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
-	    return {
-	        loadUser: function loadUser(user) {
-	            dispatch((0, _users.loadUser)(user));
-	        }
-	    };
+	  return {
+	    signIn: function signIn(user) {
+	      dispatch((0, _users.signIn)(user));
+	    }
+	  };
 	};
 	
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(LoginContainer);
@@ -30838,7 +30846,7 @@
 	var LOAD_USER = 'LOAD_USER';
 	var USER_ERROR = 'USER_ERROR';
 	
-	var loadUser = exports.loadUser = function loadUser(user, role) {
+	var loadUser = exports.loadUser = function loadUser(user) {
 	  return {
 	    type: LOAD_USER, user: user
 	  };
@@ -30851,11 +30859,16 @@
 	  };
 	};
 	
-	function signIn(username, password) {
+	function signIn(state) {
+	  var password = state.password;
+	  var username = state.username;
+	
 	  return function (dispatch) {
-	    return _axios2.default.get("/api/users").then(function (response) {
-	      if (response.result) {
-	        dispatch(loadUser(response.result.user));
+	    return _axios2.default.post("/api/users", {
+	      username: username, password: password
+	    }).then(function (response) {
+	      if (response.data) {
+	        dispatch(loadUser(response.data));
 	      } else if (response.error) {
 	        dispatch(setUserError(response.error));
 	      }
@@ -30880,6 +30893,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Login = function Login(props) {
+	
 	  return _react2.default.createElement(
 	    "div",
 	    { className: "container" },
@@ -30891,8 +30905,8 @@
 	    _react2.default.createElement(
 	      "form",
 	      { className: "login-box column", onSubmit: props.handleLogin },
-	      _react2.default.createElement("input", { className: "inputField", placeholder: "User Name" }),
-	      _react2.default.createElement("input", { type: "password", className: "inputField", placeholder: "Password" }),
+	      _react2.default.createElement("input", { className: "inputField", placeholder: "User Name", id: "username", onChange: props.handleChange }),
+	      _react2.default.createElement("input", { type: "password", className: "inputField", placeholder: "Password", id: "password", onChange: props.handleChange }),
 	      _react2.default.createElement(
 	        "button",
 	        { type: "submit", className: "login-button" },

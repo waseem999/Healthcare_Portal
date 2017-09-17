@@ -1,9 +1,57 @@
+
 [ {
   "model": "users",
   "data": {
       "username": "Snow",
       "password": "winter",
+      "role": "doctor"
+    }
+  },
+  {
+  "model": "users",
+  "data": {
+      "username": "Sandor",
+      "password": "sandor",
       "role": "patient"
+    }
+  },
+  {
+  "model": "users",
+  "data": {
+      "username": "Baelish",
+      "password": "baelish",
+      "role": "patient"
+    }
+  },
+
+  {
+  "model": "patient",
+  "data": {
+      "firstName": "Peter",
+      "lastName": "Baelish",
+      "email": "peter@westeros.com",
+      "DOB": "2057-09-10",
+      "phone": "555-431-5412",
+      "address": "30 Moondoor Lane",
+      "city": "Eiyre",
+      "state": "Minnesota",
+      "zip": "40329",
+      "userId": 2
+    }
+  },
+  {
+  "model": "patient",
+  "data": {
+      "firstName": "Sandor",
+      "lastName": "Clegene",
+      "email": "thehound@kl.com",
+      "DOB": "1970-05-21",
+      "phone": "555-121-4342",
+      "address": "44 Maple Road",
+      "city": "King's Landing",
+      "state": "Kentucky",
+      "zip": "95812",
+      "userId": 3
     }
   }
 ]

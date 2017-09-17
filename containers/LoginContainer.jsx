@@ -26,20 +26,12 @@ class LoginContainer extends Component{
       });
   }
 
-  redirectTo(){
-    if (this.props.user){
-      console.log("user", this.props)
-        window.location.href="#pendingapproval"
-    }
-    else {
-        null
-    }
-}
 
   handleLogin(e) {
     e.preventDefault();
     this.props.signIn(this.state);
-    this.redirectTo();
+    window.setTimeout(() => window.location.href="#patientlist", 1000);
+  
   }
 
      render(){

@@ -66,9 +66,9 @@
 	
 	var _LoginContainer2 = _interopRequireDefault(_LoginContainer);
 	
-	var _ComponentTwo = __webpack_require__(302);
+	var _DashboardContainer = __webpack_require__(302);
 	
-	var _ComponentTwo2 = _interopRequireDefault(_ComponentTwo);
+	var _DashboardContainer2 = _interopRequireDefault(_DashboardContainer);
 	
 	var _reactRedux = __webpack_require__(226);
 	
@@ -89,7 +89,7 @@
 	      null,
 	      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _HomeContainer2.default }),
 	      _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _LoginContainer2.default }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/componenttwo', component: _ComponentTwo2.default })
+	      _react2.default.createElement(_reactRouterDom.Route, { path: '/patientlist', component: _DashboardContainer2.default })
 	    )
 	  )
 	), document.getElementById('app'));
@@ -28255,21 +28255,13 @@
 	      this.setState(_defineProperty({}, e.target.id, e.target.value));
 	    }
 	  }, {
-	    key: 'redirectTo',
-	    value: function redirectTo() {
-	      if (this.props.user) {
-	        console.log("user", this.props);
-	        window.location.href = "#pendingapproval";
-	      } else {
-	        null;
-	      }
-	    }
-	  }, {
 	    key: 'handleLogin',
 	    value: function handleLogin(e) {
 	      e.preventDefault();
 	      this.props.signIn(this.state);
-	      this.redirectTo();
+	      window.setTimeout(function () {
+	        return window.location.href = "#patientlist";
+	      }, 1000);
 	    }
 	  }, {
 	    key: 'render',
@@ -30928,25 +30920,79 @@
 	    value: true
 	});
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactRedux = __webpack_require__(226);
+	
+	var _Navbar = __webpack_require__(262);
+	
+	var _Navbar2 = _interopRequireDefault(_Navbar);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var Portfolio = function Portfolio() {
-	    return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	            'h1',
-	            null,
-	            'Component Two'
-	        )
-	    );
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var DashboardContainer = function (_Component) {
+	    _inherits(DashboardContainer, _Component);
+	
+	    function DashboardContainer(props) {
+	        _classCallCheck(this, DashboardContainer);
+	
+	        var _this = _possibleConstructorReturn(this, (DashboardContainer.__proto__ || Object.getPrototypeOf(DashboardContainer)).call(this, props));
+	
+	        _this.state = {
+	            renderPatients: null
+	        };
+	        return _this;
+	    }
+	
+	    _createClass(DashboardContainer, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            if (this.props.user.role === "doctor") {
+	                this.setState({ renderPatients: true });
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    _react2.default.createElement(_Navbar2.default, null),
+	                    this.state.renderPatients ? _react2.default.createElement(PatientList, null) : _react2.default.createElement(AppointmentView, null)
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return DashboardContainer;
+	}(_react.Component);
+	
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
+	    var user = state.user || {};
+	    return {
+	        user: user
+	    };
 	};
 	
-	exports.default = Portfolio;
+	var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+	    return {};
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(DashboardContainer);
 
 /***/ })
 /******/ ]);

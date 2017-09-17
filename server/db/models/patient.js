@@ -4,6 +4,30 @@ var db = new Sequelize('postgres://localhost:5432/healthcare_records', {
 const bcrypt = require('bcrypt-nodejs');
 
 module.exports = db.define('patient', {
+
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  email: {
+    type: Sequelize.STRING,
+    validate: {
+      isEmail: true,
+      notEmpty: true,
+    }
+  },
+  DOB: {
+    type: Sequelize.DATE,
+    allowNull: false,
+  },
+  phone: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   address: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -19,7 +43,7 @@ module.exports = db.define('patient', {
   zip: {
     type: Sequelize.STRING,
     allowNull: false,
-  },
+  }
 })
 
 

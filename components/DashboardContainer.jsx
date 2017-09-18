@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import Navbar from '../components/Navbar.jsx';
 
 class DashboardContainer extends Component{
-constructor(props) {
-    super(props);
-    this.state = {
-      renderPatients: null
+    constructor(props) {
+        super(props);
+        this.state = {
+        renderPatients: null
+        }
     }
-  }
 
   componentWillMount() {
       if (this.props.user.role === "doctor"){

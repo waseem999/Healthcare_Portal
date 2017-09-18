@@ -12,17 +12,36 @@ class DashboardContainer extends Component{
     }
 
   componentWillMount() {
-      this.props.fetchPatients();
+      this.props.fetchPatients()
     }
 
-  
 
-    render(){
-        return (
+render(){
+    let patients = this.props.patients.patients;
+    return (
         <div>
-            <div>
-                <Navbar/>
-                
+        <Navbar/>
+            <div className="container">
+                <table className="table table" width="647">
+                    <thead>
+                        <tr>
+                        <th>Name</th>
+                        <th>DOB</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                        patients.length && patients.map(patient => (
+                            <tr key={patient.id}>
+                            <td>
+                                <span>{patient.firstName}</span>
+                            </td>
+                            <td>{ patient.firstName }</td>
+                            </tr>
+                        ))
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
         )
@@ -30,8 +49,10 @@ class DashboardContainer extends Component{
 }
 
 const mapStateToProps = (state, ownProps) => {
+    console.log("FEKJLEWLKJWEF")
+    console.log("State", state)
     let user = state.user || {};
-    let patients = state.patientlist || {}
+    let patients = state.patients || {}
     return {
       user, patients
     };

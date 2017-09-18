@@ -30974,13 +30974,60 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var patients = this.props.patients.patients;
 	            return _react2.default.createElement(
 	                'div',
 	                null,
+	                _react2.default.createElement(_Navbar2.default, null),
 	                _react2.default.createElement(
 	                    'div',
-	                    null,
-	                    _react2.default.createElement(_Navbar2.default, null)
+	                    { className: 'container' },
+	                    _react2.default.createElement(
+	                        'table',
+	                        { className: 'table table', width: '647' },
+	                        _react2.default.createElement(
+	                            'thead',
+	                            null,
+	                            _react2.default.createElement(
+	                                'tr',
+	                                null,
+	                                _react2.default.createElement(
+	                                    'th',
+	                                    null,
+	                                    'Name'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'th',
+	                                    null,
+	                                    'DOB'
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'tbody',
+	                            null,
+	                            patients.length && patients.map(function (patient) {
+	                                return _react2.default.createElement(
+	                                    'tr',
+	                                    { key: patient.id },
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            'span',
+	                                            null,
+	                                            patient.firstName
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        null,
+	                                        patient.firstName
+	                                    )
+	                                );
+	                            })
+	                        )
+	                    )
 	                )
 	            );
 	        }
@@ -30990,8 +31037,10 @@
 	}(_react.Component);
 	
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
+	    console.log("FEKJLEWLKJWEF");
+	    console.log("State", state);
 	    var user = state.user || {};
-	    var patients = state.patientlist || {};
+	    var patients = state.patients || {};
 	    return {
 	        user: user, patients: patients
 	    };

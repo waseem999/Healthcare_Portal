@@ -30983,49 +30983,45 @@
 	                    'div',
 	                    { className: 'container' },
 	                    _react2.default.createElement(
-	                        'table',
-	                        { className: 'table table', width: '647' },
+	                        'div',
+	                        { className: 'table-box' },
 	                        _react2.default.createElement(
-	                            'thead',
-	                            null,
+	                            'table',
+	                            { className: 'table', width: '200' },
 	                            _react2.default.createElement(
-	                                'tr',
+	                                'thead',
 	                                null,
 	                                _react2.default.createElement(
-	                                    'th',
-	                                    null,
-	                                    'Name'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'th',
-	                                    null,
-	                                    'DOB'
-	                                )
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'tbody',
-	                            null,
-	                            patients.length && patients.map(function (patient) {
-	                                return _react2.default.createElement(
 	                                    'tr',
-	                                    { key: patient.id },
+	                                    null,
 	                                    _react2.default.createElement(
-	                                        'td',
+	                                        'th',
 	                                        null,
-	                                        _react2.default.createElement(
-	                                            'span',
-	                                            null,
-	                                            patient.firstName
-	                                        )
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'td',
-	                                        null,
-	                                        patient.firstName
+	                                        'Select Patient'
 	                                    )
-	                                );
-	                            })
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                'tbody',
+	                                null,
+	                                patients.length && patients.map(function (patient) {
+	                                    return _react2.default.createElement(
+	                                        'tr',
+	                                        { key: patient.id },
+	                                        _react2.default.createElement(
+	                                            'td',
+	                                            null,
+	                                            _react2.default.createElement(
+	                                                'span',
+	                                                null,
+	                                                patient.firstName,
+	                                                ' ',
+	                                                patient.lastName
+	                                            )
+	                                        )
+	                                    );
+	                                })
+	                            )
 	                        )
 	                    )
 	                )

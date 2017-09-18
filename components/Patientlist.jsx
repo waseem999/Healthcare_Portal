@@ -22,11 +22,11 @@ render(){
         <div>
         <Navbar/>
             <div className="container">
-                <table className="table table" width="647">
+                <div className="table-box">
+                <table className="table" width="200">
                     <thead>
                         <tr>
-                        <th>Name</th>
-                        <th>DOB</th>
+                        <th>Select Patient</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,14 +34,14 @@ render(){
                         patients.length && patients.map(patient => (
                             <tr key={patient.id}>
                             <td>
-                                <span>{patient.firstName}</span>
+                                <span>{patient.firstName} {patient.lastName}</span>
                             </td>
-                            <td>{ patient.firstName }</td>
                             </tr>
                         ))
                         }
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
         )

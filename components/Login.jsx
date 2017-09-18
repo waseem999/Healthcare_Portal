@@ -10,7 +10,7 @@ const Login = (props) => {
       <form className="login-box column" onSubmit={props.handleLogin}>
         <input className="inputField" placeholder="User Name" id="username" onChange={props.handleChange}/>
         <input type="password" className="inputField" placeholder="Password" id="password" onChange={props.handleChange}/>
-        <button type="submit" className="login-button">LOGIN</button>
+        <button type="submit" className="login-btn">LOGIN</button>
       </form>
     </div>
   )

@@ -1,4 +1,4 @@
-const ADD_PATIENTS= 'ADD_PATIENTS';
+const LOAD_PATIENTS= 'LOAD_PATIENTS';
 
 const initialState = {
   patients: {}
@@ -6,7 +6,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case ADD_PATIENTS: 
+    case LOAD_PATIENTS: 
        return Object.assign({}, state, { patients: action.patients});
     default: 
        return state;

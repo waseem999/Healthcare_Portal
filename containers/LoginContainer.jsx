@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import store from '../store';
 import {connect} from 'react-redux';
-import { signIn } from '../actions/users'
+import { signIn } from '../actions/users';
 import Navbar from '../components/Navbar.jsx';
 import Login from '../components/Login.jsx';
 
@@ -20,6 +20,21 @@ class LoginContainer extends Component{
       this.handleLogin = this.handleLogin.bind(this);
     }
 
+
+componentWillReceiveProps(nextProps){
+ 
+  if (nextProps.user && nextProps.user.user.role){
+    if (nextProps.user.user.role === "doctor"){
+      console.log("this props user role", this.props.user)
+      window.location.href="#patientlist"
+    }
+    else if (nextProps.user.user.role === "patient"){
+      window.location.href="#appointments"
+    }
+  }
+
+
+}
   handleChange(e) {
     this.setState({
         [e.target.id]: e.target.value
@@ -30,7 +45,7 @@ class LoginContainer extends Component{
   handleLogin(e) {
     e.preventDefault();
     this.props.signIn(this.state);
-    window.setTimeout(() => window.location.href="#patientlist", 1000);
+   
   
   }
 

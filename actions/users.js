@@ -2,8 +2,6 @@ import axios from 'axios';
 const LOAD_USER = 'LOAD_USER';
 const USER_ERROR = 'USER_ERROR';
 
-
-
 export const loadUser = (user) => {
 return {
     type: LOAD_USER, user

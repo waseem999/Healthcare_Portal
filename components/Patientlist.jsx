@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import Navbar from '../components/Navbar.jsx';
+import { fetchPatients } from '../actions/patients';
 
 class DashboardContainer extends Component{
     constructor(props) {
@@ -11,19 +12,17 @@ class DashboardContainer extends Component{
     }
 
   componentWillMount() {
-      if (this.props.user.role === "doctor"){
-        this.setState({renderPatients: true})
-      }
-      
+      this.props.fetchPatients();
     }
 
-    render(){
   
+
+    render(){
         return (
         <div>
             <div>
                 <Navbar/>
-                {this.state.renderPatients ? <PatientList /> : <AppointmentView />}
+                
             </div>
         </div>
         )
@@ -31,17 +30,20 @@ class DashboardContainer extends Component{
 }
 
 const mapStateToProps = (state, ownProps) => {
-    let user = state.user || {}
+    let user = state.user || {};
+    let patients = state.patientlist || {}
     return {
-      user
+      user, patients
     };
 }
 
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        
+  return {
+    fetchPatients: function(){
+        dispatch(fetchPatients());
     }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);

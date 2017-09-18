@@ -17,8 +17,8 @@ body {
   padding-bottom: 12px;
   border-radius: 2px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, .4);
-  max-width: 290px;
-  width: auto
+  width: 400px;
+  height: auto
 }
 
 .container {
@@ -44,13 +44,13 @@ h2 {
   color: #333c4e;
 }
 
-.login-button {
+.login-btn {
   background: #00a4e0;
   color: white;
   text-transform: uppercase;
   border: 0;
   padding: 4px;
-  width: 300px;
+  width: 100%;
   height: 40px;
   font-size: 14px;
   margin: 15px auto 5px auto;

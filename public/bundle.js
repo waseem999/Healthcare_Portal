@@ -30814,11 +30814,10 @@
 	var LOAD_USER = 'LOAD_USER';
 	var USER_ERROR = 'USER_ERROR';
 	
-	var initialState = {};
-	
 	function user() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	  var action = arguments[1];
+	
 	
 	  switch (action.type) {
 	    case LOAD_USER:
@@ -31040,8 +31039,7 @@
 	}(_react.Component);
 	
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
-	    console.log("FEKJLEWLKJWEF");
-	    console.log("State", state);
+	
 	    var user = state.user || {};
 	    var patients = state.patients || {};
 	    return {
@@ -31129,19 +31127,19 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var DashboardContainer = function (_Component) {
-	    _inherits(DashboardContainer, _Component);
+	var PatientDetail = function (_Component) {
+	    _inherits(PatientDetail, _Component);
 	
-	    function DashboardContainer(props) {
-	        _classCallCheck(this, DashboardContainer);
+	    function PatientDetail(props) {
+	        _classCallCheck(this, PatientDetail);
 	
-	        return _possibleConstructorReturn(this, (DashboardContainer.__proto__ || Object.getPrototypeOf(DashboardContainer)).call(this, props));
+	        return _possibleConstructorReturn(this, (PatientDetail.__proto__ || Object.getPrototypeOf(PatientDetail)).call(this, props));
 	    }
 	
-	    _createClass(DashboardContainer, [{
+	    _createClass(PatientDetail, [{
 	        key: 'render',
 	        value: function render() {
-	            console.log("detail props", this.props);
+	            console.log("patient", this.props.patient);
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -31150,19 +31148,23 @@
 	        }
 	    }]);
 	
-	    return DashboardContainer;
+	    return PatientDetail;
 	}(_react.Component);
 	
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
 	    var id = ownProps.match.params.id;
 	    var user = state.user || {};
-	    var patients = state.patients || {};
+	    var patients = state.patients.patients || {};
+	    var index = patients.findIndex(function (i) {
+	        return i.id === parseInt(id);
+	    });
+	    var patient = patients[index];
 	    return {
-	        user: user, patients: patients, id: id
+	        user: user, patient: patient
 	    };
 	};
 	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(DashboardContainer);
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(PatientDetail);
 
 /***/ })
 /******/ ]);

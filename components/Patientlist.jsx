@@ -49,8 +49,7 @@ render(){
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log("FEKJLEWLKJWEF")
-    console.log("State", state)
+
     let user = state.user || {};
     let patients = state.patients || {}
     return {

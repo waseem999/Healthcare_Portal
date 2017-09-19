@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import Navbar from '../components/Navbar.jsx';
 import { fetchPatients } from '../actions/patients';
 
-class DashboardContainer extends Component{
+class PatientDetail extends Component{
     constructor(props) {
         super(props);
        
     }
 
 render(){
-  console.log("detail props", this.props)
+	console.log("patient", this.props.patient)
     return (
         <div>
-        <Navbar/>
+          <Navbar/>
         </div>
         )
     }
@@ -22,11 +22,15 @@ render(){
 const mapStateToProps = (state, ownProps) => {
     let id = ownProps.match.params.id;
     let user = state.user || {};
-    let patients = state.patients || {}
-    return {
-      user, patients, id
-    };
+		let patients = state.patients.patients || {}
+		let index = patients.findIndex((i) => {
+			return i.id === parseInt(id)
+		})
+		let patient = patients[index];
+			return {
+				user, patient
+			};
 }
 
 
-export default connect(mapStateToProps)(DashboardContainer);
+export default connect(mapStateToProps)(PatientDetail);

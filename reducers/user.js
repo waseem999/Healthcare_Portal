@@ -1,9 +1,9 @@
 const LOAD_USER = 'LOAD_USER';
 const USER_ERROR = 'USER_ERROR';
 
-const initialState = {};
 
-export default function user (state = initialState, action) {
+export default function user (state = {}, action) {
+  
   switch (action.type) {
     case LOAD_USER: 
        return Object.assign({}, state, { user: action.user});

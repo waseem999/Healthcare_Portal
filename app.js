@@ -36,10 +36,14 @@ users.sync()
 .then(()=> patient.sync())
 .then(()=> doctor.sync())
 .then(()=> appointments.sync())
-.then(sequelize_fixtures.loadFile('server/data.json', models));
-  app.listen(3001, function () {
-    console.log('Server is listening on port 3001');
-})
+
+.then(() => sequelize_fixtures.loadFile('server/data.json', models))
+.then(() => {
+    app.listen(3001, function () {
+        console.log('Server is listening on port 3001');
+    })
+});
+
 
 
 module.exports = app;

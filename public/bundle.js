@@ -70,6 +70,10 @@
 	
 	var _Patientlist2 = _interopRequireDefault(_Patientlist);
 	
+	var _Patientdetail = __webpack_require__(304);
+	
+	var _Patientdetail2 = _interopRequireDefault(_Patientdetail);
+	
 	var _reactRedux = __webpack_require__(226);
 	
 	var _store = __webpack_require__(289);
@@ -89,7 +93,8 @@
 	      null,
 	      _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _HomeContainer2.default }),
 	      _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _LoginContainer2.default }),
-	      _react2.default.createElement(_reactRouterDom.Route, { path: '/patientlist', component: _Patientlist2.default })
+	      _react2.default.createElement(_reactRouterDom.Route, { path: '/patientlist', component: _Patientlist2.default }),
+	      _react2.default.createElement(_reactRouterDom.Route, { path: '/patientdetail/:id', component: _Patientdetail2.default })
 	    )
 	  )
 	), document.getElementById('app'));
@@ -31010,7 +31015,9 @@
 	                                        { key: patient.id },
 	                                        _react2.default.createElement(
 	                                            'td',
-	                                            null,
+	                                            { onClick: function onClick() {
+	                                                    return window.location.href = '/#/patientdetail/' + patient.id;
+	                                                } },
 	                                            _react2.default.createElement(
 	                                                'span',
 	                                                null,
@@ -31089,6 +31096,73 @@
 	        });
 	    };
 	}
+
+/***/ }),
+/* 304 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(226);
+	
+	var _Navbar = __webpack_require__(262);
+	
+	var _Navbar2 = _interopRequireDefault(_Navbar);
+	
+	var _patients = __webpack_require__(303);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var DashboardContainer = function (_Component) {
+	    _inherits(DashboardContainer, _Component);
+	
+	    function DashboardContainer(props) {
+	        _classCallCheck(this, DashboardContainer);
+	
+	        return _possibleConstructorReturn(this, (DashboardContainer.__proto__ || Object.getPrototypeOf(DashboardContainer)).call(this, props));
+	    }
+	
+	    _createClass(DashboardContainer, [{
+	        key: 'render',
+	        value: function render() {
+	            console.log("detail props", this.props);
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(_Navbar2.default, null)
+	            );
+	        }
+	    }]);
+	
+	    return DashboardContainer;
+	}(_react.Component);
+	
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
+	    var id = ownProps.match.params.id;
+	    var user = state.user || {};
+	    var patients = state.patients || {};
+	    return {
+	        user: user, patients: patients, id: id
+	    };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(DashboardContainer);
 
 /***/ })
 /******/ ]);

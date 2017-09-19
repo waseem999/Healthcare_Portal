@@ -6,6 +6,7 @@ import {AppContainer} from './AppContainer.jsx';
 import HomeContainer from '../containers/HomeContainer.jsx';
 import Login from '../containers/LoginContainer.jsx';
 import Patientlist from './Patientlist.jsx';
+import PatientDetail from './Patientdetail.jsx';
 import {Provider} from 'react-redux';
 import store from '../store';
 
@@ -16,6 +17,7 @@ ReactDOM.render(
             <Route exact path='/' component={HomeContainer}/>
             <Route path ='/login' component={Login}/>
             <Route path ='/patientlist' component={Patientlist}/>
+            <Route path ='/patientdetail/:id' component={PatientDetail}/>
           </div>
         </HashRouter>
     </Provider>,

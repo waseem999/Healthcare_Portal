@@ -33,7 +33,7 @@ render(){
                         {
                         patients.length && patients.map(patient => (
                             <tr key={patient.id}>
-                            <td>
+                            <td onClick={() => window.location.href=`/#/patientdetail/${patient.id}`}>
                                 <span>{patient.firstName} {patient.lastName}</span>
                             </td>
                             </tr>

@@ -2,7 +2,9 @@ const express = require('express');
 const path = require('path');
 const models = require('./server/db/models'); 
 const sequelize_fixtures = require('sequelize-fixtures');
-const patients = models.patient;
+const patient = models.patient;
+const doctor = models.doctor;
+const appointments = models.appointments;
 const users = models.users;
 const bcrypt = require('bcrypt-nodejs');
 const index = require('./server/router/index.js');
@@ -31,11 +33,12 @@ app.use(function (err, req, res, next) {
 });
 
 users.sync()
-.then(()=> patients.sync())
-// .then(sequelize_fixtures.loadFile('server/data.json', models));
+.then(()=> patient.sync())
+.then(()=> doctor.sync())
+.then(()=> appointments.sync())
+.then(sequelize_fixtures.loadFile('server/data.json', models));
   app.listen(3001, function () {
     console.log('Server is listening on port 3001');
-  
 })
 
 

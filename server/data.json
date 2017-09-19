@@ -23,7 +23,14 @@
       "role": "patient"
     }
   },
-
+  {
+    "model": "doctor",
+    "data": {
+        "firstName": "Jon",
+        "lastName": "Snow",
+        "userId": 1
+      }
+  },
   {
   "model": "patient",
   "data": {
@@ -53,5 +60,14 @@
       "zip": "95812",
       "userId": 3
     }
+  },
+  {
+    "model": "appointments",
+    "data": {
+        "subject": "greyscale",
+        "DateTime": "2018-05-21",
+        "patientId": 1,
+        "doctorId": 1
+      }
   }
 ]

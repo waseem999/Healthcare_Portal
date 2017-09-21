@@ -28,6 +28,19 @@ body {
   color: #333c4e;
   height: 100%; }
 
+.appt-btn {
+    background: #00a4e0;
+    color: white;
+    text-transform: uppercase;
+    border: 0;
+    padding: 4px;
+    width: 280px;
+    height: 40px;
+    font-size: 14px;
+    margin: 15px auto 5px auto;
+    border-radius: 5px; 
+}
+
 .login-box {
   z-index: 1;
   display: inline-block;
@@ -50,9 +63,29 @@ body {
   border-radius: 2px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
   width: 500px;
-  height: auto; }
+  height: auto
+}
 
-td:hover {
+.table-list {
+  display: inline-block;
+  border: 1px solid black;
+  text-align: left;
+  background: whitesmoke;
+  padding: 20px;
+  padding-bottom: 12px;
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  width: 500px;
+  height: auto
+}
+
+
+table td{
+  border: 1px solid black;
+  padding: 20px
+}
+
+.table td:hover {
   background-color: #ffffff; }
 
 .container {
@@ -103,3 +136,15 @@ button:hover {
 .inputField:focus,
 .inputField:valid {
   border-bottom-color: #3073b4; }
+
+.photo-box {
+  z-index: 1;
+  display: inline-block;
+  text-align: left;
+  background: whitesmoke;
+  padding: 20px;
+  padding-bottom: 12px;
+  border-radius: 2px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  width: 400px;
+  height: auto; }

@@ -67,7 +67,20 @@
         "subject": "greyscale",
         "DateTime": "2018-05-21",
         "patientId": 1,
-        "doctorId": 1
+        "doctorId": 1,
+        "status": "active",
+        "note": null
+      }
+  },
+  {
+    "model": "appointments",
+    "data": {
+        "subject": "surgery",
+        "DateTime": "2016-05-21",
+        "patientId": 2,
+        "doctorId": 1,
+        "status": "past",
+        "note": null
       }
   }
 ]

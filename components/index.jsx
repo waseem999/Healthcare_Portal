@@ -14,7 +14,7 @@ ReactDOM.render(
     <Provider store={store}>
         <HashRouter>
           <div>
-            <Route exact path='/' component={HomeContainer}/>
+            <Route exact path='/' component={Login}/>
             <Route path ='/login' component={Login}/>
             <Route path ='/patientlist' component={Patientlist}/>
             <Route path ='/patientdetail/:id' component={PatientDetail}/>

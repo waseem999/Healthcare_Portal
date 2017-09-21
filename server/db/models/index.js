@@ -11,8 +11,6 @@ patient.hasMany(appointments);
 doctor.hasMany(appointments);
 
 
-
-
 module.exports = {
  patient, users, doctor, appointments
 };
